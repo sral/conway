@@ -34,7 +34,7 @@ impl DoubleBuffer {
         };
 
         for i in 0..MAX {
-            buf[i] = self.rng.gen_range(0, 2);
+            buf[i] = self.rng.gen_range(0..2);
         }
     }
 }
@@ -71,9 +71,7 @@ fn main() {
     )
     .expect("Unable to Open Window");
 
-    // Limit to max ~60 fps update rate
-    window.limit_update_rate(Some(std::time::Duration::from_micros(16600)));
-
+    window.set_target_fps(60);
     window.set_background_color(0, 0, 20);
     window.update_with_buffer(&frame_buffer, WIDTH, HEIGHT).unwrap();
 
