@@ -1,6 +1,5 @@
 use minifb::{Key, Scale, ScaleMode, Window, WindowOptions};
 use rand::prelude::*;
-use std::{thread, time};
 
 const WIDTH: usize = 256;
 const HEIGHT: usize = 256;
@@ -73,11 +72,14 @@ fn main() {
 
     window.set_target_fps(60);
     window.set_background_color(0, 0, 20);
-    window.update_with_buffer(&frame_buffer, WIDTH, HEIGHT).unwrap();
 
-    let t = time::Duration::from_millis(1500);
-    thread::sleep(t);
-
+    // Display portrait for ~2 seconds.
+    let mut i: u8 = 0;
+    while window.is_open() && !window.is_key_down(Key::Escape) && i < 120 {
+        window.update_with_buffer(&frame_buffer, WIDTH, HEIGHT).unwrap();
+        i +=1;
+    }
+    
     while window.is_open() && !window.is_key_down(Key::Escape) {
         if window.is_key_down(Key::Space) {
             double_buf.random_fill();
