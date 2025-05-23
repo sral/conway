@@ -77,10 +77,12 @@ fn main() {
     // Display portrait for ~2 seconds.
     let mut i: u8 = 0;
     while window.is_open() && !window.is_key_down(Key::Escape) && i < 120 {
-        window.update_with_buffer(&frame_buffer, WIDTH, HEIGHT).unwrap();
-        i +=1;
+        window
+            .update_with_buffer(&frame_buffer, WIDTH, HEIGHT)
+            .unwrap();
+        i += 1;
     }
-    
+
     while window.is_open() && !window.is_key_down(Key::Escape) {
         if window.is_key_down(Key::Space) {
             double_buf.random_fill();
@@ -112,6 +114,8 @@ fn main() {
         // let t = time::Duration::from_millis(250);
         // thread::sleep(t);
 
-        window.update_with_buffer(&frame_buffer, WIDTH, HEIGHT).unwrap();
+        window
+            .update_with_buffer(&frame_buffer, WIDTH, HEIGHT)
+            .unwrap();
     }
 }
