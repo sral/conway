@@ -1,5 +1,6 @@
 use minifb::{Key, Scale, ScaleMode, Window, WindowOptions};
 use rand::prelude::*;
+use rand::rng;
 
 const WIDTH: usize = 256;
 const HEIGHT: usize = 256;
@@ -33,7 +34,7 @@ impl DoubleBuffer {
         };
 
         for i in 0..MAX {
-            buf[i] = self.rng.gen_range(0..2);
+            buf[i] = self.rng.random_range(0..2);
         }
     }
 }
@@ -54,7 +55,7 @@ fn main() {
         a: conway,
         b: vec![0; MAX],
         current: 0,
-        rng: thread_rng(),
+        rng: rng(),
     };
 
     let mut window = Window::new(
