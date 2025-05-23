@@ -33,6 +33,7 @@ impl DoubleBuffer {
             &mut self.b
         };
 
+        #[allow(clippy::needless_range_loop)]
         for i in 0..MAX {
             buf[i] = self.rng.random_range(0..2);
         }
